@@ -22,8 +22,6 @@ export default function TimeCard() {
         updateTime();
         console.log("weatherData", weatherData); 
 
-        // const interval = setInterval(updateTime, 10000);
-        // return () => clearInterval(interval);
     }, []);
 
     const updateTime = () => {

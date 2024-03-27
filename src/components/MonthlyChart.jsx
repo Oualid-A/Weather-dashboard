@@ -13,7 +13,7 @@ export default function MonthlyChart() {
     }
     fetchData();
   }, [selectedInterval]);
-  
+
   const extractWeatherData = () => {
     if (!weatherData) return { maxtemp: [1], minTem: [1] };
 
@@ -27,35 +27,34 @@ export default function MonthlyChart() {
     return { maxtemp: maxtemp_c, minTem: mintemp_c };
   };
   const { maxtemp, minTem } = extractWeatherData();
- 
+
   return (
-    <div>
-      <div className="flex rounded-lg flex-col grow pt-6 pr-9 pb-2 pl-3 w-full bg-white  border border-black border-solid shadow-sm max-md:pr-5 max-md:mt-9 max-md:max-w-full">
-        <div className="flex gap-5 w-full text-black max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
-          <div className="flex-auto text-base font-semibold">
-            Weekly Temperature
+    <div className="p-6 bg-white border border-black shadow-sm w-full">
+      <div className="flex flex-col md:flex-row justify-between gap-5">
+        <div className="font-semibold text-base">Weekly Temperature</div>
+        <div className="flex gap-5 justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="bg-teal-300 h-4 w-7"></div>
+            <div>Max Temp</div>
           </div>
-          <div className="flex flex-1 gap-5 justify-between self-center text-sm items-center whitespace-nowrap">
-            <div className="flex gap-2  items-center">
-              <div className="shrink-0 bg-teal-300 h-[15px] w-[27px]" />
-              <div>Max Temp</div>
-            </div>
-            <div className="flex gap-2  items-center">
-              <div className="shrink-0 bg-blue-300 h-[15px] w-[27px]" />
-              <div>Min Temp</div>
-            </div>
+          <div className="flex items-center gap-2">
+            <div className="bg-blue-300 h-4 w-7"></div>
+            <div>Min Temp</div>
           </div>
         </div>
-        <div className="flex gap-1 mt-5 max-md:flex-wrap">
-          <BarChart
-            series={[{ data: maxtemp }, { data: minTem }]}
-            height={290}
-            xAxis={[
-              { data: ["1", "2", "3", "4", "5", "6", "7"], scaleType: "band" },
-            ]}
-            margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-          />
-        </div>
+      </div>
+      <div className="mt-5">
+        <BarChart
+          series={[{ data: maxtemp }, { data: minTem }]}
+          height={290}
+          xAxis={[
+            {
+              data: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              scaleType: "band",
+            },
+          ]}
+          margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+        />
       </div>
     </div>
   );

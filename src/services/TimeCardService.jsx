@@ -16,7 +16,7 @@ export const fetchData = async () => {
   const response = await fetch(
     `${API_TRACKING}?lat=${latitude}&lon=${longitude}&appid=${API_TRACKING_KEY}`
   );
-  console.log("response", response);
+
   if (!response.ok) {
     throw new Error("Failed to fetch weather data");
   }
