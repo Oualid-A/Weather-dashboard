@@ -12,7 +12,6 @@ export const fetchData = async () => {
 
   const position = await getPosition();
   const { latitude, longitude } = position.coords;
-    console.log(latitude);
   const response = await fetch(
     `${API_TRACKING}?lat=${latitude}&lon=${longitude}&appid=${API_TRACKING_KEY}`
   );

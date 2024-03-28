@@ -24,25 +24,7 @@ export default function HourlyChart() {
     })();
   }, [selectedInterval]);
 
-  const extractWeatherData = () => {
-    if (!weatherData) return { temps: [], heures: [] };
-
-    const hourlyData = weatherData.forecast.forecastday.map((hour) => ({
-      temp_c: hour.hour.map((temp) => {
-        return temp.temp_c;
-      }),
-      hour: hour.hour.map((time) => {
-        return time.time.split(" ")[1];
-      }),
-    }));
-
-    const temps = hourlyData.map((data) => data.temp_c);
-    const heures = hourlyData.map((data) => data.hour);
-
-    return { temps, heures };
-  };
-
-  const { temps, heures } = extractWeatherData();
+ 
 
   return (
     <div className="grid grid-cols-2 gap-2">
@@ -72,7 +54,6 @@ export default function HourlyChart() {
               const selection = chart.getSelection();
               if (selection.length === 0) return;
               const region = data[selection[0].row + 1];
-              console.log("Selected : " + region);
             },
           },
         ]}
